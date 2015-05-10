@@ -1,13 +1,14 @@
 <?php
     session_start();
     if(isset($_SESSION['voted'])) {
-        header( 'Location: assignment.php' ) ;
+        header( 'Location: surveyresults.php' ) ;
     }
 ?>
 
 <!DOCTYPE html> 
 <html lang="en-US">
 <head>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <title>Survey Form</title>
     <script>
         function checkValues() {
@@ -24,9 +25,32 @@
             alert('GPA must be a number between 0 and 4');
             return false;
         }
+        function adjustSize() {
+            var height = 0;
+            var body = window.document.body;
+            if (window.innerHeight) {
+                height = window.innerHeight;
+            } else if (body.parentElement.clientHeight) {
+                height = body.parentElement.clientHeight;
+            } else if (body && body.clientHeight) {
+                height = body.clientHeight;
+            }
+            height = height - 260;
+            document.getElementById('stretch').style.height = height + "px";
+        }
     </script>
 </head>
-<body>
+<body onload="adjustSize();" onresize="adjustSize();">
+<table class="rcorner" id="header">
+<tr>
+<td class="leftside"></td>
+<td class="rightside">Survey Page</td>
+</tr>
+</table>
+<table class="bodytable" id="stretch">
+<tr>
+<td class="leftsidecoloredfixed" id="colorsquare"></td>
+<td class="rightsidebody">
     <h2>Take the Survey:</h2>
     <form method="post" action="surveyresults.php" onsubmit="return checkValues();">
         <table>
@@ -62,5 +86,8 @@
         </tr>
         </table>
     </form>
+    <br/>
+    See the <a href="surveyresults.php">results</a>!
+</td></tr></table>
 </body>
 </html>

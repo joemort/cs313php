@@ -1,6 +1,6 @@
 table.rcorner {
     border-radius: 45px 45px 0px 0px;
-    background: url(http://www.pulsarwallpapers.com/data/media/3/Alien%20Ink%202560X1600%20Abstract%20Background.jpg);
+    background: url(background.jpg);
     background-position: top left;
     background-repeat: no-repeat;
     background-size: cover;
@@ -36,6 +36,15 @@ td.leftsidecolored {
     height: 100%;
 }
 
+td.leftsidecoloredfixed {
+    width: 280px;
+    background: #3924b3;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    height: 100%;
+}
+
 td.rightsidebody {
     border: 0px;
     margin: 0px;
@@ -59,4 +68,8 @@ body {
 
 img {
     width: 250px;
+}
+
+.alignTop {
+    vertical-align: top;
 }
