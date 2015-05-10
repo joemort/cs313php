@@ -54,7 +54,7 @@ if (isset($name) && !isset($_SESSION['voted'])) {
     print "<h2>Thank you! Your vote has been recorded:</h2>\n";
     print "Name: $name<br/>\n";
     print "Email: <a href=\"mailto:$email\">$email</a><br/>\n";
-    print "Note: Your name and email will be kept confidential.<br/><br/>\n";
+    print "Note: Your name and email will be sold to spammers.<br/><br/>\n";
     print "GPA: $gpa<br/>\n";
     print "Like Pizza: $pizza<br/><br/><br/><br/><br/><br/>\n";
     $fileContents = $fileContents . "\r\n$name\n$email\n$gpa\n$pizza";
