@@ -25,7 +25,7 @@ try
     
     echo '</p>';
 }
-catch (PDOException $ex)
+catch (Exception $ex)
 {
 	echo "Error connecting to DB. Details: $ex";
 	die();
