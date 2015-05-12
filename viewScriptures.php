@@ -5,33 +5,25 @@
 </head>
 
 <body>
-<div>
-
-<h1>Scripture Resources</h1>
-
+<h2>Scriptures:</h2>
 <?php
 $dbUser
 $dbName = 'scriptureActivity';
-$dbHost = 'localhost';
+$dbHost = '127.0.0.1';
 
 try
 {
-	// Create the PDO connection
 	$db = new PDO("mysql:host=$dbHost;dbname=$dbName", "stuff", "");
-
-	// prepare the statement
 	$statement = $db->prepare('SELECT book, chapter, verse, content FROM scripture');
 	$statement->execute();
-
-	// Go through each result
+    echo '<p>';
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
-		echo '<p>';
 		echo '<strong>' . $row['book'] . ' ' . $row['chapter'] . ':';
-		echo $row['verse'] . '</strong>' . ' - ' . $row['content'];
-		echo '</p>';
+		echo $row['verse'] . '</strong>' . ' - ' . $row['content'] . '<br/>';
 	}
-
+    
+    echo '</p>';
 }
 catch (PDOException $ex)
 {
@@ -40,8 +32,5 @@ catch (PDOException $ex)
 }
 
 ?>
-
-</div>
-
 </body>
 </html>
