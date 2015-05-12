@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Scripture List</title>
+	<title>Team Scripture Activity</title>
 </head>
 
 <body>
@@ -19,8 +19,8 @@ try
     echo '<p>';
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
-		echo '<strong>' . $row['book'] . ' ' . $row['chapter'] . ':';
-		echo $row['verse'] . '</strong>' . ' - ' . $row['content'] . '<br/>';
+		echo '<b>' . $row['book'] . ' ' . $row['chapter'] . ':';
+		echo $row['verse'] . '</b>' . ' - "' . $row['content'] . '"<br/>';
 	}
     
     echo '</p>';
