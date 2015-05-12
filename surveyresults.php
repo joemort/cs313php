@@ -99,6 +99,10 @@ $largest = $gpas[0];
 require_once ('jpgraph/jpgraph.php');
 require_once ('jpgraph/jpgraph_pie.php');
 
+if ($likesPizza == 0 && $hatesPizza == 0) {
+    $likesPizza = 1;
+}
+
 $data = array($likesPizza,$hatesPizza);
  
 $graph = new PieGraph(250,170);
