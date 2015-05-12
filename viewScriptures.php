@@ -8,11 +8,12 @@
 <h2>Scriptures:</h2>
 <?php
 $dbName = 'scriptureActivity';
-$dbHost = 'localhost';
+$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
 
 try
 {
-	$db = new PDO("mysql:host=$dbHost;dbname=$dbName", "stuff", "");
+	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "testUser", "");
 	$statement = $db->prepare('SELECT book, chapter, verse, content FROM scripture');
 	$statement->execute();
     echo '<p>';
