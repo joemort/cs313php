@@ -27,7 +27,7 @@ try
 }
 catch (Exception $ex)
 {
-	echo "Error connecting to DB. Details: $ex";
+	echo "Can't connect to DB. Exception: $ex";
 	die();
 }
 
