@@ -7,7 +7,6 @@
 <body>
 <h2>Scriptures:</h2>
 <?php
-$dbUser
 $dbName = 'scriptureActivity';
 $dbHost = '127.0.0.1';
 
