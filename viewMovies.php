@@ -20,7 +20,7 @@ td {
 
 <body>
 <h2>Movies:</h2>
-<div class="row-same-height">
+<div class="row-fluid row-same-height">
 <?php
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
