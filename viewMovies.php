@@ -2,38 +2,10 @@
 <html>
 <head>
 	<title>Team Scripture Activity</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <style>
-
-table {
-  height: 650px;
-  width: 200px;
-  margin: 0 auto 0 auto;
-}
-
-.smallheader {
-  height: 100px;
-  text-align:center;
-}
-
-.imgrow {
-   height: 300px;
-}
-
-.description {
-  vertical-align: top;
-}
-
-div[name=liked] {
-  background-color: #8CFF8C;
-}
-
-div[name=suggested] {
-  background-color: #D0FFD0;
-}
-    </style>
+    <link rel="stylesheet" href="viewMovies.css"/>
 </head>
 
 <body>
