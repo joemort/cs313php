@@ -6,24 +6,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <style>
-.row {
-    display: table;
-}
+.row-same-height {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}   
 
-.row [class*="col-"] {
-    float: none;
-    display: table-cell;
-    vertical-align: top;
-}
 td {
   padding: 10px;
+}
+
+table {
+  height: 650px;
 }
     </style>
 </head>
 
 <body>
 <h2>Movies:</h2>
-<div class="row">
+<div class="row-fluid row-same-height">
 <?php
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
