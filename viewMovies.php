@@ -6,15 +6,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <style>
-    .col-full-height {
-  height: 100%;
-  vertical-align: middle;
-}
 .row-same-height {
   display: table;
   width: 100%;
-  /* fix overflow */
   table-layout: fixed;
+}
+
+td {
+  padding: 10px;
 }
     </style>
 </head>
@@ -63,8 +62,6 @@ on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')')
         echo '"><table><tr><td><strong>' . $row['name'] . '</strong></td></tr>'
             . '<tr><td><img src="movieposters/' . $row['image'] . '" width="200" height="300"/></td></tr>'
             . '<tr><td>' . $row['description'] . "</p></td></tr></table></div>\n\n";
-        #echo '"><b>' . $row['name'] . '</b><br/><img src="movieposters/' . $row['image']
-            #. '" width="200" height="300"/><p>' . $row['description'] . '</p></div>' . "\n\n";
 	}
 }
 catch (Exception $ex)
