@@ -50,7 +50,7 @@ on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')')
         }
         
         echo '"><b>' . $row['name'] . '</b><br/><img src="movieposters/' . $row['image']
-            . '"/><p>' . $row['description'] . '</p></div>\n';
+            . '" width="200" height="300"/><p>' . $row['description'] . '</p></div>\n';
 	}
 }
 catch (Exception $ex)
