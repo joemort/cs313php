@@ -18,6 +18,10 @@ table {
 .imgrow {
    height: 300px;
 }
+
+.description {
+   vertical-align: top;
+}
     </style>
 </head>
 
