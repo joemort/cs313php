@@ -14,6 +14,7 @@ table {
 
 .smallheader {
   height: 100px;
+  text-align:center;
 }
 
 .imgrow {
@@ -38,7 +39,7 @@ $userID = 1;
 try
 {
 	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
-	$statement = $db->prepare('select movies.id, movies.name, movies.image, movies.description, (likes.id IS NOT NULL) as liked, (suggestions.id IS NOT NULL) as suggested
+	$statement = $db->prepare('CALL `getMoviesList` (' . $userID . ');');/*'select movies.id, movies.name, movies.image, movies.description, (likes.id IS NOT NULL) as liked, (suggestions.id IS NOT NULL) as suggested
 from movies
 left join (
     select likes.id, likes.movie_id
@@ -53,7 +54,7 @@ left join (
     on likes.movie_id=suggestions.source_id
     where likes.user_id=1)
 as suggestions
-on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')');
+on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')');*/
 	$statement->execute();
     
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
