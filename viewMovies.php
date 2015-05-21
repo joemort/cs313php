@@ -22,7 +22,15 @@ table {
 }
 
 .description {
-   vertical-align: top;
+  vertical-align: top;
+}
+
+.liked {
+  background-color: #8CFF8C;
+}
+
+.suggested {
+  background-color: #D0FFD0;
 }
     </style>
 </head>
@@ -39,22 +47,7 @@ $userID = 1;
 try
 {
 	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
-	$statement = $db->prepare('CALL `getMoviesList` (' . $userID . ');');/*'select movies.id, movies.name, movies.image, movies.description, (likes.id IS NOT NULL) as liked, (suggestions.id IS NOT NULL) as suggested
-from movies
-left join (
-    select likes.id, likes.movie_id
-    from likes
-    where likes.user_id=1)
-as likes
-on movies.id=likes.movie_id
-left join (
-    select suggestions.id, suggestions.suggestion_id, suggestions.source_id
-    from suggestions
-    left join likes
-    on likes.movie_id=suggestions.source_id
-    where likes.user_id=1)
-as suggestions
-on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')');*/
+	$statement = $db->prepare('CALL `getMoviesList` (' . $userID . ');');
 	$statement->execute();
     
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
