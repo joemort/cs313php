@@ -5,11 +5,23 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <style>
+    .col-full-height {
+  height: 100%;
+  vertical-align: middle;
+}
+.row-same-height {
+  display: table;
+  width: 100%;
+  /* fix overflow */
+  table-layout: fixed;
+}
+    </style>
 </head>
 
 <body>
 <h2>Movies:</h2>
-<div class="row-fluid">
+<div class="row-same-height">
 <?php
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
@@ -39,7 +51,7 @@ on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')')
     
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
-		echo '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" id="' . $row['id'] . '" name="';
+		echo '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-full-height" id="' . $row['id'] . '" name="';
         
         if ($row['liked'] == 1) {
             echo 'liked';
