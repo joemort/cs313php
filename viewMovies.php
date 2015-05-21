@@ -48,9 +48,11 @@ on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')')
         } else {
             echo 'normal';
         }
-        
-        echo '"><b>' . $row['name'] . '</b><br/><img src="movieposters/' . $row['image']
-            . '" width="200" height="300"/><p>' . $row['description'] . '</p></div>' . "\n\n";
+        echo '"><table><tr><td><strong>' . $row['name'] . '</strong></td></tr>'
+            . '<tr><td><img src="movieposters/' . $row['image'] . '" width="200" height="300"/></td></tr>'
+            . '<tr><td>' . $row['description'] . "</p></td></tr></table></div>\n\n";
+        #echo '"><b>' . $row['name'] . '</b><br/><img src="movieposters/' . $row['image']
+            #. '" width="200" height="300"/><p>' . $row['description'] . '</p></div>' . "\n\n";
 	}
 }
 catch (Exception $ex)
