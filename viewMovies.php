@@ -8,10 +8,10 @@
 </head>
 
 <body>
-<h2>Scriptures:</h2>
+<h2>Movies:</h2>
 <div class="row-fluid">
 <?php
-$dbName = 'scriptureActivity';
+$dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
 $userID = 1;
@@ -19,7 +19,22 @@ $userID = 1;
 try
 {
 	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
-	$statement = $db->prepare('CALL getMoviesList(' . $userID . ')');
+	$statement = $db->prepare('select movies.id, movies.name, movies.image, movies.description, (likes.id IS NOT NULL) as liked, (suggestions.id IS NOT NULL) as suggested
+from movies
+left join (
+    select likes.id, likes.movie_id
+    from likes
+    where likes.user_id=1)
+as likes
+on movies.id=likes.movie_id
+left join (
+    select suggestions.id, suggestions.suggestion_id, suggestions.source_id
+    from suggestions
+    left join likes
+    on likes.movie_id=suggestions.source_id
+    where likes.user_id=1)
+as suggestions
+on suggestions.suggestion_id=movies.id');#'CALL getMoviesList(' . $userID . ')');
 	$statement->execute();
     
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -34,11 +49,9 @@ try
             echo 'normal';
         }
         
-        echo '"><b>' . $row['name'] . '</b><br/><img src="' . $row['image']
+        echo '"><b>' . $row['name'] . '</b><br/><img src="movieposters/' . $row['image']
             . '"/><p>' . $row['description'] . '</p></div>\n';
 	}
-    
-    echo '</p>';
 }
 catch (Exception $ex)
 {
