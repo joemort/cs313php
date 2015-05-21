@@ -10,6 +10,7 @@
 table {
   height: 650px;
   width: 200px;
+  margin: 0 auto 0 auto;
 }
 
 .smallheader {
