@@ -25,11 +25,11 @@ table {
   vertical-align: top;
 }
 
-.liked {
+div[name=liked] {
   background-color: #8CFF8C;
 }
 
-.suggested {
+div[name=suggested] {
   background-color: #D0FFD0;
 }
     </style>
