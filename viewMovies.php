@@ -31,7 +31,8 @@ $userID = $_SESSION['userid'];
 try
 {
 	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
-	$statement = $db->prepare('CALL `getMoviesList` (' . $userID . ');');
+	$statement = $db->prepare('CALL `getMoviesList` (:userid);');
+    $statement->bindParam('userid', $userID);
 	$statement->execute();
     
 	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
