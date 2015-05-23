@@ -11,6 +11,7 @@
 <title>Movie Tracker - Login</title>
 </head>
 <body>
+<p>use test/test</p>
 <?php
 if (isset($_SESSION['failure'])) {
     echo "<p>Username/Password was not correct. Please try again.</p>";
