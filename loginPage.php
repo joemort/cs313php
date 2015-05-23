@@ -13,7 +13,7 @@
 <body>
 <?php
 if (isset($_SESSION['failure'])) {
-    echo "<p>Username/Password was not correct. Please try again. <br/>\n" . $_SESSION['failure'] . "</p>";
+    echo "<p>Username/Password was not correct. Please try again.</p>";
     unset($_SESSION['failure']);
 }
 ?>

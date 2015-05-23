@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['userid'])) {
+        header( 'Location: loginPage.php' );
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,13 +18,15 @@
 
 <body>
 <h2>Movies:</h2>
+<form method="GET" action="doLogout.php">
+<input type="submit" value="Logout"/>
+</form>
 <div class="row-fluid">
 <?php
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
-$userID = 1; // TODO: this will be from a session, but since we don't have
-//database modification yet, we don't have a login/register page.
+$userID = $_SESSION['userid'];
 
 try
 {
