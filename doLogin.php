@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_POST['user']) || !isset($_POST['password'])) {
-        $_SESSION['failure'] = true;
+        $_SESSION['failure'] = "missing value " . $_POST['user'] . " " . $_POST['password'];
         header( 'Location: loginPage.php');
     }
     
@@ -24,7 +24,7 @@
         }
         else
         {
-            $_SESSION['failure'] = true;
+            $_SESSION['failure'] = "no rows '" . $username . "' '" . $password . "'";
             header( 'Location: loginPage.php');
         }
     }

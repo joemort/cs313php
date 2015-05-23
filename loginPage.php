@@ -13,16 +13,16 @@
 <body>
 <?php
 if (isset($_SESSION['failure'])) {
-    echo "<p>Username/Password was not correct. Please try again.</p>";
+    echo "<p>Username/Password was not correct. Please try again. <br/>\n" . $_SESSION['failure'] . "</p>";
     unset($_SESSION['failure']);
 }
 ?>
 
-<form method="post" action="doLogin.php" onsubmit="return checkValues();">
+<form method="POST" action="doLogin.php">
     <table>
         <tr>
             <td>Username:</td>
-            <td><input type="text" name="name" id="name" size="30" required="true"/></td>
+            <td><input type="text" name="user" id="user" size="30" required="true"/></td>
         </tr>
         <tr>
             <td>Password:</td>
