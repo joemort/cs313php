@@ -4,6 +4,7 @@
         header( 'Location: viewMovies.php' );
     }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,12 @@
 </head>
 <body>
 <?php
-if (isset($_POST['name'])) {
-    echo <p>"Username/Password was not correct. Please try again."</p>
+if (isset($_SESSION['failure'])) {
+    echo "<p>Username/Password was not correct. Please try again.</p>";
+    unset($_SESSION['failure']);
 }
 ?>
+
 <form method="post" action="doLogin.php" onsubmit="return checkValues();">
     <table>
         <tr>

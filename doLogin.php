@@ -1,6 +1,7 @@
 <?php
     session_start();
     if(!isset($_POST['user']) || !isset($_POST['password'])) {
+        $_SESSION['failure'] = true;
         header( 'Location: loginPage.php');
     }
     
@@ -23,6 +24,7 @@
         }
         else
         {
+            $_SESSION['failure'] = true;
             header( 'Location: loginPage.php');
         }
     }
