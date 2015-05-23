@@ -31,7 +31,7 @@ if (isset($_SESSION['failure'])) {
         </tr>
     </table>
     <br/>
-    <input type="submit"/>
+    <input type="submit" value="Login"/>
 </form>
 </form>
 </body>
