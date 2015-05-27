@@ -26,7 +26,7 @@ if (isset($_POST['book']))
 
         foreach ($topicIds as $topicId)
         {
-            $statement = $db->prepare('INSERT INTO scripture_topic(scriptureId, topicId) VALUES(:scriptureId, :topicId)');
+            $statement = $db->prepare('INSERT INTO scripture_and_topic(scriptureId, topicId) VALUES(:scriptureId, :topicId)');
 
             $statement->bindParam(':topicId', $topicId);
             $statement->bindParam(':scriptureId', $scriptureId);
