@@ -30,7 +30,6 @@
 			try
 			{
 
-				// In the openshift environment 
 				$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 				$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
 
@@ -46,9 +45,9 @@
 					$topicID = $row['id'];
 					$name = $row['name'];
 		
-					<tr><td><input type="checkbox" value="$topicID" name="topics[]"></td><td> 
+					echo "<tr><td><input type='checkbox' value='$topicID' name='topics[]'></td><td>";
 					print "$name";
-					</td></tr>
+					echo "</td></tr>\n";
 				}
 			}
 			catch (PDOException $ex)
