@@ -7,11 +7,6 @@ if (isset($_POST['book']))
     $content = $_POST['content'];
     $topicIds = $_POST['topics'];
 
-    echo "book=$book\n";
-    echo "chapter=$chapter\n";
-    echo "verse=$verse\n";
-    echo "content=$content\n";
-
     $dbName = 'scriptureActivity';
     $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
     $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
