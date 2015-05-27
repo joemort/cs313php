@@ -80,12 +80,18 @@ try
 
 		$stmtTopics->execute();
 
+        $foundTopic = false;
 		while ($topicRow = $stmtTopics->fetch(PDO::FETCH_ASSOC))
 		{
 			echo $topicRow['name'] . ' ';
+            $foundTopic = true;
 		}
         
-        echo "<br/>\n";
+        if (!$foundTopic) {
+            echo "none";
+        }
+        
+        echo "<br/><br/>\n";
 	}
     
     echo '</p>';
