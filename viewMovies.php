@@ -72,7 +72,7 @@ function updateContextMenus() {
 })(jQuery, window);
 
 $("div[name=liked], div[name=suggested], div[name=normal]").contextMenu({
-    menuSelector: "#unlikeMenu",
+    menuSelector: "#likeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
         var domobj = invokedOn[0];
         var like = "like";
