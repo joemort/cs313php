@@ -14,62 +14,8 @@
     <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="viewMovies.css"/>
-    
-</head>
-
-<body>
-
-<ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
-    <li><a tabindex="-1" href="#">Action</a></li>
-    <li><a tabindex="-1" href="#">Another action</a></li>
-    <li><a tabindex="-1" href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a tabindex="-1" href="#">Separated link</a></li>
-</ul>
-
-<h2>Movies:</h2>
-<form method="GET" action="doLogout.php">
-<input type="submit" value="Logout"/>
-</form>
-<div class="row-fluid">
-<?php
-$dbName = 'php';
-$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
-$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
-$userID = $_SESSION['userid'];
-
-try
-{
-	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
-	$statement = $db->prepare('CALL `getMoviesList` (:userid);');
-    $statement->bindParam('userid', $userID);
-	$statement->execute();
-    
-	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
-	{
-		echo '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-full-height" id="' . $row['id'] . '" name="';
-        
-        if ($row['liked'] == 1) {
-            echo 'liked';
-        } else if ($row['suggested'] == 1) {
-            echo 'suggested';
-        } else {
-            echo 'normal';
-        }
-        echo '"><table><tr><td class="smallheader"><strong>' . $row['name'] . '</strong></td></tr>'
-            . '<tr><td class="imgrow"><img src="movieposters/' . $row['image'] . '" width="200" height="300"/></td></tr>'
-            . '<tr><td class="description">' . $row['description'] . "</td></tr></table></div>\n\n";
-	}
-}
-catch (Exception $ex)
-{
-	echo "Can't connect to DB. Exception: $ex";
-	die();
-}
-
-?>
-</div>
-<script type="text/javascript">
+    <script type="text/javascript">
+function updateContextMenus() {
     (function ($, window) {
 
     $.fn.contextMenu = function (settings) {
@@ -163,6 +109,64 @@ $("div[name=normal]").contextMenu({
         alert(domobj.id); 
     }
 });
+}
+    </script>
+</head>
+
+<body onload="updateContextMenus()">
+
+<ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
+    <li><a tabindex="-1" href="#">Action</a></li>
+    <li><a tabindex="-1" href="#">Another action</a></li>
+    <li><a tabindex="-1" href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a tabindex="-1" href="#">Separated link</a></li>
+</ul>
+
+<h2>Movies:</h2>
+<form method="GET" action="doLogout.php">
+<input type="submit" value="Logout"/>
+</form>
+<div class="row-fluid">
+<?php
+$dbName = 'php';
+$dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+$dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
+$userID = $_SESSION['userid'];
+
+try
+{
+	$db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
+	$statement = $db->prepare('CALL `getMoviesList` (:userid);');
+    $statement->bindParam('userid', $userID);
+	$statement->execute();
+    
+	while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+	{
+		echo '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-full-height" id="' . $row['id'] . '" name="';
+        
+        if ($row['liked'] == 1) {
+            echo 'liked';
+        } else if ($row['suggested'] == 1) {
+            echo 'suggested';
+        } else {
+            echo 'normal';
+        }
+        echo '"><table><tr><td class="smallheader"><strong>' . $row['name'] . '</strong></td></tr>'
+            . '<tr><td class="imgrow"><img src="movieposters/' . $row['image'] . '" width="200" height="300"/></td></tr>'
+            . '<tr><td class="description">' . $row['description'] . "</td></tr></table></div>\n\n";
+	}
+}
+catch (Exception $ex)
+{
+	echo "Can't connect to DB. Exception: $ex";
+	die();
+}
+
+?>
+</div>
+<script type="text/javascript">
+    
     
     </script>
 
