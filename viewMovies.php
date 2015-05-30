@@ -146,18 +146,47 @@ function processData() {
             for (index = 0; index < byMovie.length; index++) {
                 var finalSplit = byMovie[index].split(",");
                 document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
-                $("div[id=" + finalSplit[0] "]").contextMenu({
-                    menuSelector: (finalSplit[1] == "like" ? "#unlikeMenu" : "#likeMenu"),
-                    menuSelected: function (invokedOn, selectedMenu) {
-                        var domobj = invokedOn[0];
-                        while (domobj.parentNode) {
-                            if (domobj.getAttribute("name")==finalSplit[1]) { break; }
-                            domobj = domobj.parentNode;
-                        }
+                $("div[id=" + finalSplit[0] "]").off('contextMenu');
+                if (finalSplit[0] == "liked") {
+                    $("div[id=" + finalSplit[0] "]").contextMenu({
+                        menuSelector: "#unlikeMenu",
+                        menuSelected: function (invokedOn, selectedMenu) {
+                            var domobj = invokedOn[0];
+                            while (domobj.parentNode) {
+                                if (domobj.getAttribute("name")=="liked") { break; }
+                                domobj = domobj.parentNode;
+                            }
         
-                        sendLike(domobj.id, (finalSplit[1] == "like" ? "unlike" : "#like"));
-                    }
-                });
+                            sendLike(domobj.id, "unlike");
+                        }
+                    });
+                } else if (finalSplit[0] == "suggested") {
+                    $("div[id=" + finalSplit[0] "]").contextMenu({
+                        menuSelector: "#likeMenu",
+                        menuSelected: function (invokedOn, selectedMenu) {
+                            var domobj = invokedOn[0];
+                            while (domobj.parentNode) {
+                                if (domobj.getAttribute("name")=="suggested") { break; }
+                                domobj = domobj.parentNode;
+                            }
+        
+                            sendLike(domobj.id, "like");
+                        }
+                    });
+                } else {
+                    $("div[id=" + finalSplit[0] "]").contextMenu({
+                        menuSelector: "#likeMenu",
+                        menuSelected: function (invokedOn, selectedMenu) {
+                            var domobj = invokedOn[0];
+                            while (domobj.parentNode) {
+                                if (domobj.getAttribute("name")=="normal") { break; }
+                                domobj = domobj.parentNode;
+                            }
+        
+                            sendLike(domobj.id, "like");
+                        }
+                    });
+                }
             }
         }
         else
