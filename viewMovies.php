@@ -53,6 +53,8 @@ function updateContextMenus() {
             $(document).click(function () {
                 $(settings.menuSelector).hide();
             });
+            
+            return false;
         });
         
         function getMenuPosition(mouse, direction, scrollDir) {
@@ -92,32 +94,6 @@ $("div[name=liked], div[name=suggested], div[name=normal]").contextMenu({
         return false;
     }
 });
-/*
-$("div[name=suggested]").contextMenu({
-    menuSelector: "#likeMenu",
-    menuSelected: function (invokedOn, selectedMenu) {
-        var domobj = invokedOn[0];
-        while (domobj.parentNode) {
-            if (domobj.getAttribute("name")=="suggested") { break; }
-            domobj = domobj.parentNode;
-        }
-        
-        sendLike(domobj.id, "like"); 
-    }
-});
-
-$("div[name=normal]").contextMenu({
-    menuSelector: "#likeMenu",
-    menuSelected: function (invokedOn, selectedMenu) {
-        var domobj = invokedOn[0];
-        while (domobj.parentNode) {
-            if (domobj.getAttribute("name")=="normal") { break; }
-            domobj = domobj.parentNode;
-        }
-        
-        sendLike(domobj.id, "like");
-    }
-});*/
 }
 
 var req;
