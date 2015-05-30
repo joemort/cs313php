@@ -44,18 +44,16 @@ function updateContextMenus() {
                         var $selectedMenu = $(e.target);
                         
                         settings.menuSelected.call(this, $invokedOn, $selectedMenu);
-                        //return false;
+                        return false;
                 });
                 
-                //return false;
+                return false;
             });
 
             //make sure menu closes on any click
             $(document).click(function () {
                 $(settings.menuSelector).hide();
             });
-            
-            //return false;
         });
         
         function getMenuPosition(mouse, direction, scrollDir) {
@@ -92,7 +90,6 @@ $("div[name=liked], div[name=suggested], div[name=normal]").contextMenu({
         }
         
         sendLike(domobj.id, like);
-        //return false;
     }
 });
 }
