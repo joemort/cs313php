@@ -71,19 +71,27 @@ function updateContextMenus() {
     };
 })(jQuery, window);
 
-$("div[name=liked]").contextMenu({
+$("div[name=liked], div[name=suggested], div[name=normal]").contextMenu({
     menuSelector: "#unlikeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
         var domobj = invokedOn[0];
+        var like = "like";
         while (domobj.parentNode) {
-            if (domobj.getAttribute("name")=="liked") { break; }
+            if (domobj.getAttribute("name") == "liked") {
+                like = "unlike";
+                break;
+            } else if (domobj.getAttribute("name") == "suggested" ||
+                        domobj.getAttribute("name") == "normal") {
+                break;
+            }
+            
             domobj = domobj.parentNode;
         }
         
-        sendLike(domobj.id, "unlike");
+        sendLike(domobj.id, like);
     }
 });
-
+/*
 $("div[name=suggested]").contextMenu({
     menuSelector: "#likeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
@@ -108,7 +116,7 @@ $("div[name=normal]").contextMenu({
         
         sendLike(domobj.id, "like");
     }
-});
+});*/
 }
 
 var req;
@@ -147,47 +155,6 @@ function processData() {
                 var finalSplit = byMovie[index].split(",");
                 if (finalSplit.length != 2) continue;
                 document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
-                $("div[id=" + finalSplit[0] + "]").off('contextMenu');
-                if (finalSplit[0] == "liked") {
-                    $("div[id=" + finalSplit[0] + "]").contextMenu({
-                        menuSelector: "#unlikeMenu",
-                        menuSelected: function (invokedOn, selectedMenu) {
-                            var domobj = invokedOn[0];
-                            while (domobj.parentNode) {
-                                if (domobj.getAttribute("name")=="liked") { break; }
-                                domobj = domobj.parentNode;
-                            }
-        
-                            sendLike(domobj.id, "unlike");
-                        }
-                    });
-                } else if (finalSplit[0] == "suggested") {
-                    $("div[id=" + finalSplit[0] + "]").contextMenu({
-                        menuSelector: "#likeMenu",
-                        menuSelected: function (invokedOn, selectedMenu) {
-                            var domobj = invokedOn[0];
-                            while (domobj.parentNode) {
-                                if (domobj.getAttribute("name")=="suggested") { break; }
-                                domobj = domobj.parentNode;
-                            }
-        
-                            sendLike(domobj.id, "like");
-                        }
-                    });
-                } else {
-                    $("div[id=" + finalSplit[0] + "]").contextMenu({
-                        menuSelector: "#likeMenu",
-                        menuSelected: function (invokedOn, selectedMenu) {
-                            var domobj = invokedOn[0];
-                            while (domobj.parentNode) {
-                                if (domobj.getAttribute("name")=="normal") { break; }
-                                domobj = domobj.parentNode;
-                            }
-        
-                            sendLike(domobj.id, "like");
-                        }
-                    });
-                }
             }
         }
         else
@@ -202,11 +169,7 @@ function processData() {
 <body onload="updateContextMenus()">
 
 <ul id="likeMenu" class="dropdown-menu" role="menu" style="display:none" >
-    <li><a tabindex="-1" href="#">Like</a></li>
-</ul>
-
-<ul id="unlikeMenu" class="dropdown-menu" role="menu" style="display:none" >
-    <li><a tabindex="-1" href="#">Unlike</a></li>
+    <li><a tabindex="-1" href="#">Toggle Like</a></li>
 </ul>
 
 <h2>Movies:</h2>
