@@ -141,7 +141,13 @@ function processData() {
         if (req.status == 200)
         {
             var theText = req.responseText;
-            alert(theText);
+            var byMovie = theText.split("\n");
+            var index;
+            for (index = 0; index < byMovie.length; index++) {
+                var finalSplit = byMovie[index].split(",");
+                document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
+            }
+            //alert(theText);
             updateContextMenus();
         }
         else

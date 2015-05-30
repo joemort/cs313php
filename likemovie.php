@@ -7,7 +7,6 @@ if(!isset($_SESSION['userid'])) {
 $userID = $_SESSION['userid'];
 $movieid = $_GET['movieid'];
 $likeornot = $_GET['like'];
-echo "$userID $movieid $likeornot\n";
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
