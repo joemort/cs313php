@@ -8,7 +8,7 @@
         $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
         $username = $_POST['user'];
         $password = $_POST['password'];
-        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        //$passwordHash = password_hash($password, PASSWORD_DEFAULT);
         try {
             $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
             //TODO: change this to a sproc.
@@ -16,14 +16,14 @@
             $statement->bindParam(':name', $username);
             $statement->execute();
             $row = $statement->fetch(PDO::FETCH_ASSOC);
-            if (isset($row) && isset($row['id']) && password_verify($passwordHash, $row['password']))
+            if (isset($row) && isset($row['id']) && password_verify($password, $row['password']))
             {
                 $_SESSION['userid'] = $row['id'];
                 header( 'Location: viewMovies.php');
             }
             else
             {
-                $_SESSION['failure'] = "Username/Password was not correct. Please try again. hash:'$passwordHash' server:'" . $row['password'] . "'";
+                $_SESSION['failure'] = "Username/Password was not correct. Please try again.";
                 header( 'Location: loginPage.php');
             }
         
