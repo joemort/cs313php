@@ -1,7 +1,7 @@
 <?php
-$userID = "1";//$_SESSION['userid'];
-$movieid = "1";//$_GET['movieid'];
-$likeornot = "like";//$_GET['like']; // true for like, false for dislike
+$userID = $_SESSION['userid'];
+$movieid = $_GET['movieid'];
+$likeornot = $_GET['like']; // true for like, false for dislike
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
@@ -22,7 +22,6 @@ try
     $statement = $db->prepare('CALL `getMoviesList` (:userid);');
     $statement->bindParam('userid', $userID);
 	$statement->execute();
-    $newValues = array();
     while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 	{
         $val = 'normal';
@@ -32,7 +31,7 @@ try
             $val = 'suggested';
         }
         
-        array_push($newValues, $row['id'] . "," . $val);
+        echo $row['id'] . "," . $val . "\n";
     }
 }
 catch (Exception $ex)
@@ -40,7 +39,5 @@ catch (Exception $ex)
 	echo "Can't connect to DB. Exception: $ex";
 	die();
 }
-
-print_r($newValues);
 
 ?>

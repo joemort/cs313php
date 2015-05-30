@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="viewMovies.css"/>
     <script type="text/javascript">
 function updateContextMenus() {
-    (function ($, window) {
+(function ($, window) {
 
     $.fn.contextMenu = function (settings) {
 
@@ -80,7 +80,7 @@ $("div[name=liked]").contextMenu({
             domobj = domobj.parentNode;
         }
         
-        alert(domobj.id); 
+        sendLike(domobj.id, "unlike");
     }
 });
 
@@ -93,7 +93,7 @@ $("div[name=suggested]").contextMenu({
             domobj = domobj.parentNode;
         }
         
-        alert(domobj.id); 
+        sendLike(domobj.id, "like"); 
     }
 });
 
@@ -106,9 +106,49 @@ $("div[name=normal]").contextMenu({
             domobj = domobj.parentNode;
         }
         
-        alert(domobj.id); 
+        sendLike(domobj.id, "like");
     }
 });
+}
+
+var req;
+
+function sendLike(movieId, isLike) {
+    url = "likemovie.php?movieid=" + movieId + "&like=" + isLike;
+    if (window.XMLHttpRequest)
+    {
+        req = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject)
+    {
+        req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (req != null)
+    {
+        req.onreadystatechange = processData;
+        req.open("GET", url, true);
+        req.send(null);
+    }
+    else
+    {
+        alert("Brower doesn't support XMLHttp");
+    }
+}
+
+function processData() {
+    if (req.readyState == 4)
+    {
+        if (req.status == 200)
+        {
+            var theText = req.responseText;
+            alert(theText);
+            updateContextMenus();
+        }
+        else
+        {
+            alert("There was a problem retrieving the XML data:\n" + req.statusText + " " + req.status);
+        }
+   }
 }
     </script>
 </head>
@@ -165,10 +205,6 @@ catch (Exception $ex)
 
 ?>
 </div>
-<script type="text/javascript">
-    
-    
-    </script>
 
 </body>
 </html>
