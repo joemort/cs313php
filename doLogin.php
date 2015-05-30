@@ -8,6 +8,7 @@
         $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
         $username = $_POST['user'];
         $password = $_POST['password'];
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         try {
             $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
             //TODO: change this to a sproc.
@@ -43,6 +44,7 @@
         $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
         $username = $_POST['user'];
         $password = $_POST['password'];
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
         try {
             $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
             //TODO: change this to a sproc.
@@ -79,14 +81,6 @@
         header( 'Location: loginPage.php');
     }
     
-    
-    $dbName = 'php';
-    $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
-    $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
-    $username = $_POST['user'];
-    $password = $_POST['password'];
-    
-
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     
     if (isset($_POST['login'])) {
