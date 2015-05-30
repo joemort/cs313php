@@ -3,6 +3,11 @@
     require 'password.php';
     
     function loginExisting() {
+        $dbName = 'php';
+        $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+        $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
+        $username = $_POST['user'];
+        $password = $_POST['password'];
         try {
             $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
             //TODO: change this to a sproc.
@@ -33,6 +38,11 @@
     }
     
     function registerNew() {
+        $dbName = 'php';
+        $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
+        $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
+        $username = $_POST['user'];
+        $password = $_POST['password'];
         try {
             $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
             //TODO: change this to a sproc.
