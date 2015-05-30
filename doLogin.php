@@ -12,12 +12,11 @@
         try {
             $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
             //TODO: change this to a sproc.
-            $statement = $db->prepare("select id from users where name=:name and password=:password");
+            $statement = $db->prepare("select id, password from users where name=:name");
             $statement->bindParam(':name', $username);
-            $statement->bindParam(':password', $passwordHash);
             $statement->execute();
             $row = $statement->fetch(PDO::FETCH_ASSOC);
-            if (isset($row) && isset($row['id']))
+            if (isset($row) && isset($row['id']) && password_verify($passwordHash, $row['password']))
             {
                 $_SESSION['userid'] = $row['id'];
                 header( 'Location: viewMovies.php');
