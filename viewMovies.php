@@ -145,6 +145,7 @@ function processData() {
             var index;
             for (index = 0; index < byMovie.length; index++) {
                 var finalSplit = byMovie[index].split(",");
+                if (finalSplit.length != 2) continue;
                 document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
                 $("div[id=" + finalSplit[0] + "]").off('contextMenu');
                 if (finalSplit[0] == "liked") {
