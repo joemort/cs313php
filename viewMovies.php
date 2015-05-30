@@ -72,12 +72,12 @@ function updateContextMenus() {
 })(jQuery, window);
 
 $("div[name=liked]").contextMenu({
-    menuSelector: "#contextMenu",
+    menuSelector: "#unlikeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
         var domobj = invokedOn[0];
         while (domobj.parentNode) {
-            domobj = domobj.parentNode;
             if (domobj.getAttribute("name")=="liked") { break; }
+            domobj = domobj.parentNode;
         }
         
         alert(domobj.id); 
@@ -85,12 +85,12 @@ $("div[name=liked]").contextMenu({
 });
 
 $("div[name=suggested]").contextMenu({
-    menuSelector: "#contextMenu",
+    menuSelector: "#likeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
         var domobj = invokedOn[0];
         while (domobj.parentNode) {
-            domobj = domobj.parentNode;
             if (domobj.getAttribute("name")=="suggested") { break; }
+            domobj = domobj.parentNode;
         }
         
         alert(domobj.id); 
@@ -98,12 +98,12 @@ $("div[name=suggested]").contextMenu({
 });
 
 $("div[name=normal]").contextMenu({
-    menuSelector: "#contextMenu",
+    menuSelector: "#likeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
         var domobj = invokedOn[0];
         while (domobj.parentNode) {
-            domobj = domobj.parentNode;
             if (domobj.getAttribute("name")=="normal") { break; }
+            domobj = domobj.parentNode;
         }
         
         alert(domobj.id); 
@@ -115,12 +115,12 @@ $("div[name=normal]").contextMenu({
 
 <body onload="updateContextMenus()">
 
-<ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
-    <li><a tabindex="-1" href="#">Action</a></li>
-    <li><a tabindex="-1" href="#">Another action</a></li>
-    <li><a tabindex="-1" href="#">Something else here</a></li>
-    <li class="divider"></li>
-    <li><a tabindex="-1" href="#">Separated link</a></li>
+<ul id="likeMenu" class="dropdown-menu" role="menu" style="display:none" >
+    <li><a tabindex="-1" href="#">Like</a></li>
+</ul>
+
+<ul id="unlikeMenu" class="dropdown-menu" role="menu" style="display:none" >
+    <li><a tabindex="-1" href="#">Unlike</a></li>
 </ul>
 
 <h2>Movies:</h2>
