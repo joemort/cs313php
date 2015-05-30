@@ -44,6 +44,7 @@ function updateContextMenus() {
                         var $selectedMenu = $(e.target);
                         
                         settings.menuSelected.call(this, $invokedOn, $selectedMenu);
+                        return false;
                 });
                 
                 return false;
