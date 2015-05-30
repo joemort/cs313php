@@ -71,10 +71,6 @@ function updateContextMenus() {
     };
 })(jQuery, window);
 
-$('div[name=liked]').off('contextmenu');
-$('div[name=suggested]').off('contextmenu');
-$('div[name=normal]').off('contextmenu');
-
 $("div[name=liked]").contextMenu({
     menuSelector: "#unlikeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
@@ -150,9 +146,19 @@ function processData() {
             for (index = 0; index < byMovie.length; index++) {
                 var finalSplit = byMovie[index].split(",");
                 document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
+                $("div[id=" + finalSplit[0] "]").contextMenu({
+                    menuSelector: (finalSplit[1] == "like" ? "#unlikeMenu" : "#likeMenu"),
+                    menuSelected: function (invokedOn, selectedMenu) {
+                        var domobj = invokedOn[0];
+                        while (domobj.parentNode) {
+                            if (domobj.getAttribute("name")==finalSplit[1]) { break; }
+                            domobj = domobj.parentNode;
+                        }
+        
+                        sendLike(domobj.id, (finalSplit[1] == "like" ? "unlike" : "#like"));
+                    }
+                });
             }
-            
-            updateContextMenus();
         }
         else
         {
