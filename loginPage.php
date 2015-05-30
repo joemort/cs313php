@@ -19,7 +19,7 @@
 <p>use test/test</p>
 <?php
 if (isset($_SESSION['failure'])) {
-    echo "<p>Username/Password was not correct. Please try again.</p>";
+    echo "<p>" . $_SESSION['failure'] . "</p>\n";
     unset($_SESSION['failure']);
 }
 ?>
@@ -36,7 +36,8 @@ if (isset($_SESSION['failure'])) {
         </tr>
     </table>
     <br/>
-    <input type="submit" value="Login"/>
+    <input type="submit" name="login" value="Login"/>
+    <input type="submit" name="register" value="Register"/>
 </form>
 </form>
 </body>

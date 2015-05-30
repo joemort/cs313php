@@ -3,7 +3,7 @@
     
     session_start();
     if(!isset($_POST['user']) || !isset($_POST['password'])) {
-        $_SESSION['failure'] = true;
+        $_SESSION['failure'] = "Username/Password was not correct. Please try again.";
         header( 'Location: loginPage.php');
     }
     
@@ -28,11 +28,12 @@
         if (isset($row) && isset($row['id']))
         {
             $_SESSION['userid'] = $row['id'];
+            $_SESSION['hash'] = $passwordHash;
             header( 'Location: viewMovies.php');
         }
         else
         {
-            $_SESSION['failure'] = true;
+            $_SESSION['failure'] = "Username/Password was not correct. Please try again.";
             header( 'Location: loginPage.php');
         }
         
