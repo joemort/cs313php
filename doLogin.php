@@ -23,7 +23,7 @@
             }
             else
             {
-                $_SESSION['failure'] = "Username/Password was not correct. Please try again.";
+                $_SESSION['failure'] = "Username/Password was not correct. Please try again. hash:'$passwordHash' server:'" . $row['password'] . "'";
                 header( 'Location: loginPage.php');
             }
         
