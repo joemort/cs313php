@@ -84,11 +84,8 @@
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     
     if (isset($_POST['login'])) {
-        $_SESSION['failure'] = "used login button.";
-        header( 'Location: loginPage.php');
+        loginExisting();
     } else if (isset($_POST['register'])) {
         registerNew();
-    } else {
-        loginExisting();
     }
 ?>

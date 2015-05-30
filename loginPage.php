@@ -28,11 +28,11 @@ if (isset($_SESSION['failure'])) {
     <table>
         <tr>
             <td>Username:</td>
-            <td><input type="text" name="user" id="user" size="30" required="true"/></td>
+            <td><input type="text" name="user" id="user" size="30" maxlength="30" required="true"/></td>
         </tr>
         <tr>
             <td>Password:</td>
-            <td><input type="password" name="password" id="password" size="30" required="true"/></td>
+            <td><input type="password" name="password" id="password" size="30" maxlength="30" required="true"/></td>
         </tr>
     </table>
     <br/>
