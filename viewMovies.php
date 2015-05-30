@@ -89,6 +89,7 @@ $("div[name=liked], div[name=suggested], div[name=normal]").contextMenu({
         }
         
         sendLike(domobj.id, like);
+        return false;
     }
 });
 /*
@@ -166,7 +167,7 @@ function processData() {
     </script>
 </head>
 
-<body onload="updateContextMenus()">
+<body>
 
 <ul id="likeMenu" class="dropdown-menu" role="menu" style="display:none" >
     <li><a tabindex="-1" href="#">Toggle Like</a></li>
@@ -214,6 +215,6 @@ catch (Exception $ex)
 
 ?>
 </div>
-
+<script type="text/javascript">updateContextMenus();</script>
 </body>
 </html>
