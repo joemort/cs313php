@@ -44,7 +44,7 @@ function updateContextMenus() {
                         var $selectedMenu = $(e.target);
                         
                         settings.menuSelected.call(this, $invokedOn, $selectedMenu);
-                        return false;
+                        //return false;
                 });
                 
                 //return false;
@@ -92,7 +92,7 @@ $("div[name=liked], div[name=suggested], div[name=normal]").contextMenu({
         }
         
         sendLike(domobj.id, like);
-        return false;
+        //return false;
     }
 });
 }
