@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION['userid'])) {
+    header( 'Location: loginPage.php' );
+} else {
+
 $userID = $_SESSION['userid'];
 $movieid = $_GET['movieid'];
 $likeornot = $_GET['like'];
@@ -39,6 +44,7 @@ catch (Exception $ex)
 {
 	echo "Can't connect to DB. Exception: $ex";
 	die();
+}
 }
 
 ?>
