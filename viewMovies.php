@@ -71,6 +71,10 @@ function updateContextMenus() {
     };
 })(jQuery, window);
 
+$('div[name=liked]').off('contextmenu');
+$('div[name=suggested]').off('contextmenu');
+$('div[name=normal]').off('contextmenu');
+
 $("div[name=liked]").contextMenu({
     menuSelector: "#unlikeMenu",
     menuSelected: function (invokedOn, selectedMenu) {
@@ -147,7 +151,7 @@ function processData() {
                 var finalSplit = byMovie[index].split(",");
                 document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
             }
-            //alert(theText);
+            
             updateContextMenus();
         }
         else
