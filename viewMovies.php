@@ -146,9 +146,9 @@ function processData() {
             for (index = 0; index < byMovie.length; index++) {
                 var finalSplit = byMovie[index].split(",");
                 document.getElementById(finalSplit[0]).setAttribute("name", finalSplit[1]);
-                $("div[id=" + finalSplit[0] "]").off('contextMenu');
+                $("div[id=" + finalSplit[0] + "]").off('contextMenu');
                 if (finalSplit[0] == "liked") {
-                    $("div[id=" + finalSplit[0] "]").contextMenu({
+                    $("div[id=" + finalSplit[0] + "]").contextMenu({
                         menuSelector: "#unlikeMenu",
                         menuSelected: function (invokedOn, selectedMenu) {
                             var domobj = invokedOn[0];
@@ -161,7 +161,7 @@ function processData() {
                         }
                     });
                 } else if (finalSplit[0] == "suggested") {
-                    $("div[id=" + finalSplit[0] "]").contextMenu({
+                    $("div[id=" + finalSplit[0] + "]").contextMenu({
                         menuSelector: "#likeMenu",
                         menuSelected: function (invokedOn, selectedMenu) {
                             var domobj = invokedOn[0];
@@ -174,7 +174,7 @@ function processData() {
                         }
                     });
                 } else {
-                    $("div[id=" + finalSplit[0] "]").contextMenu({
+                    $("div[id=" + finalSplit[0] + "]").contextMenu({
                         menuSelector: "#likeMenu",
                         menuSelected: function (invokedOn, selectedMenu) {
                             var domobj = invokedOn[0];
