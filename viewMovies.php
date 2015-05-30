@@ -128,9 +128,39 @@ catch (Exception $ex)
 $("div[name=liked]").contextMenu({
     menuSelector: "#contextMenu",
     menuSelected: function (invokedOn, selectedMenu) {
-        var msg = "You selected the menu item '" + selectedMenu.text() +
-            "' on the value '" + invokedOn.text() + "'";
-        alert(msg);
+        var domobj = invokedOn[0];
+        while (domobj.parentNode) {
+            domobj = domobj.parentNode;
+            if (domobj.getAttribute("name")=="liked") { break; }
+        }
+        
+        alert(domobj.id); 
+    }
+});
+
+$("div[name=suggested]").contextMenu({
+    menuSelector: "#contextMenu",
+    menuSelected: function (invokedOn, selectedMenu) {
+        var domobj = invokedOn[0];
+        while (domobj.parentNode) {
+            domobj = domobj.parentNode;
+            if (domobj.getAttribute("name")=="suggested") { break; }
+        }
+        
+        alert(domobj.id); 
+    }
+});
+
+$("div[name=normal]").contextMenu({
+    menuSelector: "#contextMenu",
+    menuSelected: function (invokedOn, selectedMenu) {
+        var domobj = invokedOn[0];
+        while (domobj.parentNode) {
+            domobj = domobj.parentNode;
+            if (domobj.getAttribute("name")=="normal") { break; }
+        }
+        
+        alert(domobj.id); 
     }
 });
     
