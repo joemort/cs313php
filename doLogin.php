@@ -17,7 +17,16 @@
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     
-    
+    if (isset($_POST['login'])) {
+        $_SESSION['failure'] = "used login button.";
+        header( 'Location: loginPage.php');
+    } else if (isset($_POST['register'])) {
+        $_SESSION['failure'] = "used register button.";
+        header( 'Location: loginPage.php');
+    } else {
+        $_SESSION['failure'] = "couldn't detect button :(.";
+        header( 'Location: loginPage.php');
+    }
     try {
         $db = new PDO("mysql:host=$dbHost:$dbPort;dbname=$dbName", "test", "test");
         $statement = $db->prepare("select id from users where name=:name and password=:password");
