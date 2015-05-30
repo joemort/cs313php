@@ -47,7 +47,7 @@ function updateContextMenus() {
                         return false;
                 });
                 
-                return false;
+                //return false;
             });
 
             //make sure menu closes on any click
@@ -55,7 +55,7 @@ function updateContextMenus() {
                 $(settings.menuSelector).hide();
             });
             
-            return false;
+            //return false;
         });
         
         function getMenuPosition(mouse, direction, scrollDir) {
