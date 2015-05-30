@@ -16,7 +16,6 @@
 <title>Movie Tracker - Login</title>
 </head>
 <body>
-<p>use test/test</p>
 <?php
 if (isset($_SESSION['failure'])) {
     echo "<p>" . $_SESSION['failure'] . "</p>\n";
