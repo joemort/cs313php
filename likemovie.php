@@ -1,7 +1,7 @@
 <?php
 $userID = "1";//$_SESSION['userid'];
 $movieid = "1";//$_GET['movieid'];
-$likeornot = $_GET['like']; // true for like, false for dislike
+$likeornot = "like";//$_GET['like']; // true for like, false for dislike
 $dbName = 'php';
 $dbHost = getenv('OPENSHIFT_MYSQL_DB_HOST');
 $dbPort = getenv('OPENSHIFT_MYSQL_DB_PORT');
