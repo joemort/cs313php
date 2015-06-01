@@ -60,7 +60,7 @@
             }
             else
             {
-                $_SESSION['failure'] = "Username exists, please try a different one. '$passwordHash'";
+                $_SESSION['failure'] = "Username exists, please try a different one.";
                 header( 'Location: loginPage.php');
             }
         
