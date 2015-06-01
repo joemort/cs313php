@@ -38,6 +38,5 @@ if (isset($_SESSION['failure'])) {
     <input type="submit" name="login" value="Login"/>
     <input type="submit" name="register" value="Register"/>
 </form>
-</form>
 </body>
 </html>

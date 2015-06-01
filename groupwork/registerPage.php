@@ -1,15 +1,3 @@
-<?php
-    session_start();
-    if(isset($_SESSION['userid'])) {
-        header( 'Location: viewMovies.php' );
-    }
-    
-    if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == "") {
-        $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-        header("Location: $redirect");
-    }
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
