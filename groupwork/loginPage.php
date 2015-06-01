@@ -5,6 +5,7 @@
 </head>
 <body>
 <?php
+session_start();
 if (isset($_SESSION['failure'])) {
     echo "<p>" . $_SESSION['failure'] . "</p>\n";
     unset($_SESSION['failure']);
