@@ -26,6 +26,6 @@ if (isset($_SESSION['failure'])) {
     <br/>
     <input type="submit" name="register" value="Register"/>
 </form>
-</form>
+<a href="loginPage.php">login existing user</a>
 </body>
 </html>

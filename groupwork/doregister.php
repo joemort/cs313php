@@ -26,7 +26,7 @@
             else
             {
                 $_SESSION['failure'] = "Username exists, please try a different one.";
-                header( 'Location: signupPage.php');
+                header( 'Location: registerPage.php');
             }
         
             $statement->close();
@@ -41,8 +41,8 @@
     
     session_start();
     if(!isset($_POST['user']) || !isset($_POST['password'])) {
-        $_SESSION['failure'] = "Username/Password was not correct. Please try again.";
-        header( 'Location: signupPage.php');
+        $_SESSION['failure'] = "Username/Password missing. Please try again.";
+        header( 'Location: registerPage.php');
     }
     
     registerNew();
