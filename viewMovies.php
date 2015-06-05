@@ -119,6 +119,10 @@ function sendLike(movieId, isLike) {
     }
 }
 
+function clickLike(movieId) {
+    alert("id is " + movieId);
+}
+
 function processData() {
     if (req.readyState == 4)
     {
@@ -183,7 +187,7 @@ try
         }
         echo '"><table><tr><td class="smallheader"><strong>' . $row['name'] . '</strong></td></tr>'
             . '<tr><td class="imgrow"><img src="movieposters/' . $row['image'] . '" width="200" height="300"/></td></tr>'
-            . '<tr><td class="description">' . $row['description'] . "</td></tr><tr><td align='center'>button here</td></tr></table></div>\n\n";
+            . '<tr><td class="description">' . $row['description'] . "</td></tr><tr><td align='center' onclick='clickLike(" . $row['id'] .")'><button type='button'>Toggle Like</button></td></tr></table></div>\n\n";
 	}
 }
 catch (Exception $ex)
