@@ -142,7 +142,7 @@ function processData() {
     </script>
 </head>
 
-<body>
+<body class="nobackground">
 
 <ul id="likeMenu" class="dropdown-menu" role="menu" style="display:none" >
     <li><a tabindex="-1" href="#">Toggle Like</a></li>

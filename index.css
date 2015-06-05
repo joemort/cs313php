@@ -66,6 +66,12 @@ body {
     margin: 0px;
 }
 
+body.nobackground {
+    color: #3924b3;
+    padding: 0px;
+    margin: 0px;
+}
+
 img {
     width: 250px;
 }
