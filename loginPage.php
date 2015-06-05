@@ -14,15 +14,45 @@
 <html>
 <head>
 <title>Movie Tracker - Login</title>
+
+<link rel="stylesheet" type="text/css" href="index.css">
+<script type="text/javascript">
+        function adjustSize() {
+            var height = 0;
+            var body = window.document.body;
+            if (window.innerHeight) {
+                height = window.innerHeight;
+            } else if (body.parentElement.clientHeight) {
+                height = body.parentElement.clientHeight;
+            } else if (body && body.clientHeight) {
+                height = body.clientHeight;
+            }
+            height = height - 260;
+            document.getElementById('stretch').style.height = height + "px";
+            var width = 250 + document.getElementById('pic').getBoundingClientRect().left;
+            document.getElementById('colorsquare').style.width = width + "px";
+        }
+</script>
+
+
 </head>
-<body>
+<body onload="adjustSize();" onresize="adjustSize();">
 <?php
 if (isset($_SESSION['failure'])) {
     echo "<p>" . $_SESSION['failure'] . "</p>\n";
     unset($_SESSION['failure']);
 }
 ?>
-
+<table class="rcorner" id="header">
+<tr>
+<td class="leftside"></td>
+<td class="rightside">Movie Tracker - Login</td>
+</tr>
+</table>
+<table class="bodytable" id="stretch">
+<tr>
+<td class="leftsidecolored" id="colorsquare"></td>
+<td class="rightsidebody">
 <form method="POST" action="doLogin.php">
     <table>
         <tr>
@@ -38,5 +68,7 @@ if (isset($_SESSION['failure'])) {
     <input type="submit" name="login" value="Login"/>
     <input type="submit" name="register" value="Register"/>
 </form>
+</tr>
+</table>
 </body>
 </html>
