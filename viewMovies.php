@@ -149,7 +149,7 @@ function processData() {
 </ul>
 <table class="rcorner" id="header">
 <tr>
-<td class="leftside"><form method="GET" action="doLogout.php">
+<td class="leftside" align="center"><form method="GET" action="doLogout.php">
 <input type="submit" value="Logout"/>
 </form></td>
 <td class="rightside">Movie Tracker and Suggestions</td>
