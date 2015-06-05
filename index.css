@@ -77,6 +77,10 @@ img {
     width: 250px;
 }
 
+img.skinny {
+    width: 200px;
+}
+
 .alignTop {
     vertical-align: top;
 }
