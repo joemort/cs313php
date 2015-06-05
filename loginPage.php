@@ -29,8 +29,6 @@
             }
             height = height - 260;
             document.getElementById('stretch').style.height = height + "px";
-            var width = 250 + document.getElementById('pic').getBoundingClientRect().left;
-            document.getElementById('colorsquare').style.width = width + "px";
         }
 </script>
 
@@ -51,7 +49,7 @@ if (isset($_SESSION['failure'])) {
 </table>
 <table class="bodytable" id="stretch">
 <tr>
-<td class="leftsidecolored" id="colorsquare"></td>
+<td class="leftsidecoloredfixed" id="colorsquare"></td>
 <td class="rightsidebody">
 <form method="POST" action="doLogin.php">
     <table>
