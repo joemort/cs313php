@@ -120,7 +120,21 @@ function sendLike(movieId, isLike) {
 }
 
 function clickLike(movieId) {
-    alert("id is " + movieId);
+    var domobj = document.getElementById(movieId);
+    var like = "like";
+    while (domobj.parentNode) {
+        if (domobj.getAttribute("name") == "liked") {
+            like = "unlike";
+            break;
+        } else if (domobj.getAttribute("name") == "suggested" ||
+                   domobj.getAttribute("name") == "normal") {
+            break;
+        }
+        
+        domobj = domobj.parentNode;
+    }
+    
+    sendLike(domobj.id, like);
 }
 
 function processData() {
