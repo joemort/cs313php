@@ -68,5 +68,6 @@ if (isset($_SESSION['failure'])) {
 </form>
 </tr>
 </table>
+<script> adjustSize(); </script>
 </body>
 </html>

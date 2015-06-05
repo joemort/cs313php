@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="viewMovies.css"/>
+    <link rel="stylesheet" type="text/css" href="index.css">
     <script type="text/javascript">
 function updateContextMenus() {
 (function ($, window) {
@@ -146,11 +147,15 @@ function processData() {
 <ul id="likeMenu" class="dropdown-menu" role="menu" style="display:none" >
     <li><a tabindex="-1" href="#">Toggle Like</a></li>
 </ul>
-
-<h2>Movies:</h2>
-<form method="GET" action="doLogout.php">
+<table class="rcorner" id="header">
+<tr>
+<td class="leftside"><form method="GET" action="doLogout.php">
 <input type="submit" value="Logout"/>
-</form>
+</form></td>
+<td class="rightside">Movie Tracker and Suggestions</td>
+</tr>
+</table>
+
 <div class="row-fluid">
 <?php
 $dbName = 'php';
