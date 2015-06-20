@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package week8;
 
 import java.io.BufferedReader;
@@ -10,40 +5,36 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "Login", urlPatterns = {"/LoginDiscussion"})
-public class Login extends HttpServlet {
+@WebServlet(name = "DiscussionBoard", urlPatterns = {"/DiscussionBoard"})
+public class DiscussionBoard extends HttpServlet {
 
+    private List<String> posts;
     private List<String> usernames;
-    private List<String> passwords;
+    private List<String> timeStamps;
 
-    public void addLoginInfo(String username, String password) {
-
-        usernames.add(username);
-        passwords.add(password);
+    public void addPost(String username, String post, String timeStamp) {
 
         try {
             String dataDirectory = System.getenv("OPENSHIFT_DATA_DIR");
-            String fileName = "loginData.txt";
+            String fileName = "DiscussionBoardData.txt";
             if (dataDirectory != null) {
                 fileName = dataDirectory + "/" + fileName;
             }
-
             File file = new File(fileName);
-            file.createNewFile();
+
             BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-            writer.write(username + "\n" + password + "\n");
+            writer.write(post + "\n" + timeStamp + "\n" + username + "\n");
             writer.close();
 
         } catch (IOException e) {
@@ -52,13 +43,14 @@ public class Login extends HttpServlet {
 
     }
 
-    public void getLoginInfo() {
+    public void getDiscussionBoard() {
+        posts = new ArrayList<String>();
         usernames = new ArrayList<String>();
-        passwords = new ArrayList<String>();
+        timeStamps = new ArrayList<String>();
 
         try {
             String dataDirectory = System.getenv("OPENSHIFT_DATA_DIR");
-            String fileName = "loginData.txt";
+            String fileName = "DiscussionBoardData.txt";
             if (dataDirectory != null) {
                 fileName = dataDirectory + "/" + fileName;
             }
@@ -67,41 +59,25 @@ public class Login extends HttpServlet {
             file.createNewFile();
             BufferedReader reader = new BufferedReader(new FileReader(file));
 
-            String line;
-            Boolean change = true;
+            String line = "";
+            int change = 0;
 
             while ((line = reader.readLine()) != null) {
-                if (change) {
-                    usernames.add(line);
-                    change = false;
+                if (change == 0) {
+                    posts.add(line);
+                    change = 1;
+                } else if (change == 1) {
+                    timeStamps.add(line);
+                    change = 2;
                 } else {
-                    passwords.add(line);
-                    change = true;
+                    usernames.add(line);
+                    change = 0;
                 }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public Boolean isValidLogin(String username, String password) {
-        int index = -1;
-
-        if (usernames.contains(username)) {
-            index = usernames.indexOf(username);
-        } //if not in list add to list
-        else {
-            addLoginInfo(username, password);
-            return true;
-        }
-
-        if (passwords.get(index).equals(password)) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     /**
@@ -118,17 +94,45 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            String username = request.getParameter("user");
-            String password = request.getParameter("pass");
-
-            getLoginInfo();
-
-            if (isValidLogin(username, password)) {
-                request.getSession().setAttribute("username", username);
-                response.sendRedirect("addToDiscussionBoard.jsp");
-            } else {
-                request.getRequestDispatcher("LoginFail.jsp").forward(request, response);
+            if (request.getSession().getAttribute("username") == null) {
+                response.sendRedirect("loginDiscussion.jsp");
+                return;
             }
+
+            String username = request.getSession().getAttribute("username").toString();
+
+            String timeStamp = new SimpleDateFormat("HH:mm.ss MM/dd/yyyy").format(new java.util.Date());
+
+            String post = request.getParameter("post");
+
+            if (post != null) {
+                addPost(username, post, timeStamp);
+            }
+
+            getDiscussionBoard();
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Discussion Board</title>");
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"JSP.css\">");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Discussion Board</h1>");
+            out.println("<a href=\"addToDiscussionBoard.jsp\">Add Post to Discussion Board</a>");
+
+            for (int i = usernames.size() - 1; i >= 0; i--) {
+                out.println("<div class='wholePost'>");
+
+                out.println("<span id='time'>" + timeStamps.get(i) + "</span>");
+                out.println("<span id='user'>" + usernames.get(i) + "</span>");
+                out.println("</br>");
+                out.println("<span id='post'>" + posts.get(i) + "</span>");
+
+                out.println("</div>");
+            }
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
